@@ -1,12 +1,10 @@
 package Dancer2::Logger::File::RotateLogs;
-# ABSTRACT: file-based rotate logging engine for Dancer2
 $Dancer2::Logger::File::RotateLogs::VERSION = '0.01';
-use Carp 'carp';
+
 use Moo;
 use File::Spec;
 use File::RotateLogs;
 use Dancer2::Core::Types;
-use Data::Dumper;
 
 with 'Dancer2::Core::Role::Logger'; 
 
@@ -73,10 +71,7 @@ has maxage => (
 
 sub BUILD {
     my ($self) = @_;
-    #print Dumper($self->logfile);
-    #print Dumper($self->linkname);
-    #print Dumper($self->rotationtime);
-    #print Dumper($self->maxage);
+
     $ROTATELOGS = File::RotateLogs->new({
         logfile      => $self->logfile,
         linkname     => $self->linkname,
@@ -97,30 +92,50 @@ sub log {
 1;
 __END__
 
-=encoding utf-8
+=pod
 
 =head1 NAME
 
-Dancer2::Logger::File::RotateLogs - It's new $module
+Dancer2::Logger::File::RotateLogs - an automated logrotate.
 
 =head1 SYNOPSIS
 
-    use Dancer2::Logger::File::RotateLogs;
+    # development.yml or production.yml
+    logger: "File::RotateLogs"
+
+    # options (It's possible to omit)
+    engines:
+      logger:
+        File::RotateLogs:
+          logfile: '/[absolute path]/logs/error.log.%Y%m%d%H'
+          linkname: '/[absolute path]/logs/error.log'  
+          rotationtime: 86400
+          maxage: 86400 * 7 
+        
+
 
 =head1 DESCRIPTION
 
-Dancer2::Logger::File::RotateLogs is ...
+This module allows you to initialize File::RotateLogs within the application's configuration. 
+File::RotateLogs is utility for file logger and very simple logfile rotation. 
+
+=head1 SEE ALSO
+
+=over 1
+
+=item L<File::RotateLogs>
+
+=back
+
 
 =head1 LICENSE
-
-Copyright (C) Masaaki Saito.
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
 
 =head1 AUTHOR
 
-Masaaki Saito E<lt>masakyst.mobile@gmail.comE<gt>
+Masaaki Saito E<lt>masakyst.public@gmail.comE<gt>
 
 =cut
 

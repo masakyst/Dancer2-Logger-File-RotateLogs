@@ -1,22 +1,36 @@
 # NAME
 
-Dancer2::Logger::File::RotateLogs - It's new $module
+Dancer2::Logger::File::RotateLogs - an automated logrotate.
 
 # SYNOPSIS
 
-    use Dancer2::Logger::File::RotateLogs;
+    # development.yml or production.yml
+    logger: "File::RotateLogs"
+
+    # options (It's possible to omit)
+    engines:
+      logger:
+        File::RotateLogs:
+          logfile: '/[absolute path]/logs/error.log.%Y%m%d%H'
+          linkname: '/[absolute path]/logs/error.log'  
+          rotationtime: 86400
+          maxage: 86400 * 7 
+        
 
 # DESCRIPTION
 
-Dancer2::Logger::File::RotateLogs is ...
+This module allows you to initialize File::RotateLogs within the application's configuration. 
+File::RotateLogs is utility for file logger and very simple logfile rotation. 
+
+# SEE ALSO
+
+- [File::RotateLogs](https://metacpan.org/pod/File::RotateLogs)
 
 # LICENSE
-
-Copyright (C) Masaaki Saito.
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
 
 # AUTHOR
 
-Masaaki Saito <masakyst.mobile@gmail.com>
+Masaaki Saito <masakyst.public@gmail.com>
