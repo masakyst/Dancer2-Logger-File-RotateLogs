@@ -27,7 +27,7 @@ cover_db/
 
 MYMETA.*
 
-bin/
+app.psgi
 logs/
 environments/
 config.yml
