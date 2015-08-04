@@ -5,16 +5,16 @@ use Test::More;
 use Dancer2;
 
 
-set engines => {
-    logger => {
-        'File::RotateLogs' => {
-            logfile  => 'test.%Y%m%d%H',
-            linkname => 'test',
-            rotationtime => '86400',
-            maxage       => '86400 * 7',
-        }   
-    }   
-};
+#set engines => {
+#    logger => {
+#        'File::RotateLogs' => {
+#            logfile  => 'test.%Y%m%d%H',
+#            linkname => 'test',
+#            rotationtime => '86400',
+#            maxage       => '86400 * 7',
+#        }   
+#    }   
+#};
 
 set logger  => 'File::RotateLogs';
 

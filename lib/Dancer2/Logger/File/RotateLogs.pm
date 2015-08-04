@@ -39,7 +39,7 @@ has log_dir => (
 has logfile => (
     is       => 'ro',
     required => 1,
-    lazy => 1,
+    lazy     => 1,
     default  => sub {
         my $self = shift;
         File::Spec->catfile(File::Spec->rel2abs($self->log_dir), $self->environment.'.log').".%Y%m%d%H";
@@ -49,7 +49,7 @@ has logfile => (
 has linkname => (
     is       => 'ro',
     required => 1,
-    lazy => 1,
+    lazy     => 1,
     default  => sub {
         my $self = shift;
         File::Spec->catfile(File::Spec->rel2abs($self->log_dir), $self->environment.'.log');
@@ -59,12 +59,14 @@ has linkname => (
 has rotationtime => (
     is       => 'ro',
     required => 1,
+    default  => sub { 86400 },
 );
 
 has maxage => (
     is       => 'ro',
     required => 1,
-    coerce => sub { 
+    default  => sub { 86400 * 7 },
+    coerce   => sub { 
         $_[0] =~ /^\d+$/ ? $_[0] : int eval($_[0])
     },
 );
