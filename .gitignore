@@ -31,5 +31,6 @@ app.psgi
 logs/
 environments/
 config.yml
+start_server.sh
 
 /Dancer2-Logger-File-RotateLogs-*
